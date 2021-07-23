@@ -7,22 +7,22 @@
 package edu.sjsu.assignment4;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.LinkedList;
 import java.util.ListIterator;
 import java.util.Queue;
+import java.util.Scanner;
 
 public class MyCollections {
     /**
-     * Implement a public static method to print a collection of files.
+     * Implements a public static method to print a collection of files.
      * The method prints the files from the first to the last. For each file,
-     * print its content, then delete it from the collection, so that the next
-     * file become the first file. Use 3 consecutive *s to indicate the end of
-     * the file content. You can have another method for printing the content
-     * for clearer code. (Hint: use a while loop - while the collection is not empty)
-     * The parameter should be Collection<File>, where Collection should be a
-     * specific type of data structure based on the requirement. And you should use
-     * the methods that’s most effective.
+     * this method prints its content, then delete it from the collection,
+     * so that the next file becomes the first file. *** is printed to the
+     * console to indicate the end of file.
+     *
      * @param filesQueue
+     *      {@code Queue<File>}: a queue of files
      */
     public static void printFiles(Queue<File> filesQueue) {
         while (!filesQueue.isEmpty()) {
@@ -32,10 +32,25 @@ public class MyCollections {
         }
     }
 
-    public static void printFile(File file) {
+    /**
+     * A private helper method that prints one file to the console
+     *
+     * @param file
+     *      A {@code File} object for the input file
+     */
+    private static void printFile(File file) {
         // Using scanner
-        // while has next line, print next line
-        // print *** at last
+        try(Scanner scanner = new Scanner(file)) {
+            // while has next line, print next line
+            while (scanner.hasNextLine()) {
+                System.out.println(scanner.nextLine());
+            }
+            // print *** at last
+            System.out.println("***");
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found.");
+        }
+
     }
 
     /**
