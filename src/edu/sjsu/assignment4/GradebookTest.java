@@ -8,8 +8,8 @@ package edu.sjsu.assignment4;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.HashMap;
-import java.util.Iterator;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -57,8 +57,32 @@ class GradebookTest {
     @Test
     void updateGradeTest1() {
         gradebook.addStudent(StudentTest.STUDENT_3, 'B');
-        //assertTrue(gradebook.updateGrade(3004, 'C'));
-        gradebook.updateGrade(3004, 'C');
-        0System.out.println(gradebook.get(StudentTest.STUDENT_3));
+        assertTrue(gradebook.updateGrade(0035, 'C'));
+    }
+
+    @Test
+    void updateGradeTest2() {
+        gradebook.addStudent(StudentTest.STUDENT_2, 'B');
+        assertFalse(gradebook.updateGrade(0, 'C'));
+    }
+
+    @Test
+    void printGradeTest() {
+        gradebook.addStudent(StudentTest.STUDENT_1, 'B');
+        gradebook.addStudent(StudentTest.STUDENT_0, 'A');
+        // Saving the original output stream
+        PrintStream original = System.out;
+        // Initializing new output stream
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        // Setting the new output stream
+        System.setOut(new PrintStream(outputStream));
+        // Assertion
+        String expected = "1.Unnamed: B\n" +
+                "2.John Doe: A\n";
+        gradebook.printGrade();
+        String actual = outputStream.toString();
+        assertEquals(expected, actual);
+        // Reverting to the original output stream
+        System.setOut(original);
     }
 }

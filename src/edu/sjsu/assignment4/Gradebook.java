@@ -6,8 +6,7 @@
  */
 package edu.sjsu.assignment4;
 
-import java.util.Comparator;
-import java.util.HashMap;
+import java.util.*;
 
 public class Gradebook extends HashMap<Student, Character> {
     /**
@@ -112,6 +111,7 @@ public class Gradebook extends HashMap<Student, Character> {
         }
         return false;
     }
+
     /**
      * Deletes the corresponding student with the id from the map.
      *
@@ -123,13 +123,6 @@ public class Gradebook extends HashMap<Student, Character> {
      */
     public boolean deleteStudent(int id) {
         return this.deleteStudent(new Student(id));
-    }
-
-    public String getStudentName(int id) {
-        if (this.containsKey(new Student(id))) {
-            return "";
-        }
-        return "";
     }
 
     /**
@@ -146,8 +139,68 @@ public class Gradebook extends HashMap<Student, Character> {
         return "ABCDF".contains(String.valueOf(grade));
     }
 
+    /**
+     * Prints the students with the grade, and the order is based
+     * on the comparator. If the comparator passed in is null,
+     * sort by the natural order of student objects.
+     * The format will be "id.name: grade" for each student as a line.
+     * Note that there's a space between : and grade.
+     *
+     * @param comparator
+     *      A {@code Comparator} for {@code Student}
+     */
     public void printGrade(Comparator<Student> comparator) {
+        System.out.print(this.toString(comparator));
+    }
 
+    /**
+     * Prints the students with the grade based on
+     * the natural order of student objects.
+     * The format will be "id.name: grade" for each
+     * student as a line.
+     * Note that there's a space between : and grade.
+     */
+    public void printGrade() {
+        this.printGrade(null);
+    }
+
+    /**
+     * Returns a formatted {@code String} containing the
+     * students with the grade, and the order is based
+     * on the comparator.
+     * If the comparator passed in is null,
+     * sort by the natural order of student objects.
+     * The format will be "id.name: grade" for each student
+     * as a line.
+     * Note that there's a space between : and grade.
+     *
+     * @param comparator
+     *      A {@code Comparator} for {@code Student}
+     *
+     * @return
+     *      A {@code String}.
+     */
+    public String toString(Comparator<Student> comparator) {
+        String result = "";
+        Iterator<Student> iterator;
+        // Pick a correct key collection to iterate.
+        if (comparator != null) {
+            ArrayList<Student> students = new ArrayList<Student>(this.keySet());
+            students.sort(comparator);
+            iterator = students.listIterator();
+        } else {
+            iterator = this.keySet().iterator();
+        }
+        // Iterating through the key collection and concatenate
+        // to result.
+        int counter = 1;
+        while (iterator.hasNext()) {
+            Student current = iterator.next();
+            result += counter + "." + current.getName()
+                    + ": " + this.get(current) + "\n";
+            counter++;
+        }
+        return result;
     }
 
     /**

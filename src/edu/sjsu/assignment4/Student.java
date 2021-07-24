@@ -76,6 +76,12 @@ public class Student implements Comparable<Student> {
         return Objects.hash(id);
     }
 
+    /**
+     * Only returns the {@code Student} name.
+     *
+     * @return
+     *      A name {@code String}.
+     */
     @Override
     public String toString() {
         return this.name;
