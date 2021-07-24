@@ -29,6 +29,7 @@ class MyCollectionsTest {
 
     @org.junit.jupiter.api.Test
     void printFiles() {
+        // Assignment 4 Part 1.1
         // Saving the original output stream
         PrintStream original = System.out;
         // Initializing new output stream
@@ -56,15 +57,35 @@ class MyCollectionsTest {
     @org.junit.jupiter.api.Test
     void downsize() {
         // Assignment 4 Part 1.2
-        String[] s = {"Tom", "Bob", "Cathy", "Alice", "Trudy", "Harry", "Denny"};
-        List<String> l = Arrays.asList(s);
-        LinkedList<String> e = new LinkedList<>(l);
-        System.out.println(e);
-        MyCollections.downsize(e, 3);
-        System.out.println(e);
+        // Setting up an example
+        LinkedList<String> actual = new LinkedList<>(Arrays.asList(
+                "Tom", "Bob", "Cathy", "Alice", "Trudy", "Harry", "Denny"));
+        LinkedList<String> expected = new LinkedList<>(Arrays.asList(
+                "Tom", "Bob", "Alice", "Trudy", "Denny"));
+        // Calling the test method
+        MyCollections.downsize(actual, 3);
+        // Assertion
+        Assert.assertEquals(actual, expected);
     }
 
     @org.junit.jupiter.api.Test
-    void isBalanced() {
+    void isBalancedTest1() {
+        Assert.assertTrue(MyCollections.isBalanced("System.out.println(list.get(0))"));
+    }
+    @org.junit.jupiter.api.Test
+    void isBalancedTest2() {
+        Assert.assertTrue(MyCollections.isBalanced("[](3*5)^2"));
+    }
+    @org.junit.jupiter.api.Test
+    void isBalancedTest3() {
+        Assert.assertFalse(MyCollections.isBalanced("[(2+3]*5)^2"));
+    }
+    @org.junit.jupiter.api.Test
+    void isBalancedTest4() {
+        Assert.assertFalse(MyCollections.isBalanced("System.out.println(list.get(0)"));
+    }
+    @org.junit.jupiter.api.Test
+    void isBalancedTest5() {
+        Assert.assertFalse(MyCollections.isBalanced("[(3*5)]^2]"));
     }
 }
