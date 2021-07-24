@@ -3,19 +3,10 @@
     Project : Assignment 4
     Class   : AppointmentManager
     Date    : 07/24/2021
-
-    To-do   : - Check if there are other ways to avoid waste of memory
-                caused by using description as a key when it is already
-                in the Appointment object;
-              - Modify the add and delete methods to be case insensitive
-              - Add more tests
-              - Add print method
-                - implement toString() in Appointment and its subclasses
-                - how to get the type? -> modify the Appointment
-                - order ->
  */
 package edu.sjsu.assignment4;
 
+import java.util.Iterator;
 import java.util.TreeMap;
 
 public class AppointmentManager extends TreeMap<String, Appointment> {
@@ -39,8 +30,9 @@ public class AppointmentManager extends TreeMap<String, Appointment> {
      *      to the AppointmentManager, otherwise false.
      */
     public boolean addAnAppointment(Appointment appointment) {
-        if (this.isEmpty() || this.containsKey(appointment.getDescription())) {
-            this.put(appointment.getDescription(), appointment);
+        String tempDes = appointment.getDescription();
+        if (!this.containsKey(tempDes)) {
+            this.put(tempDes, appointment);
             return true;
         }
         return false;
@@ -57,11 +49,33 @@ public class AppointmentManager extends TreeMap<String, Appointment> {
      *      deleted, otherwise false.
      */
     public boolean deleteAnAppointment(String description) {
-        if (this.isEmpty() || !this.containsKey(description)) {
+        if (!this.containsKey(description)) {
             return false;
         }
         this.remove(description);
         return true;
     }
 
+    /**
+     * An overridden toString method.
+     *
+     * @return
+     *      An optimized {@code String}.
+     */
+    @Override
+    public String toString() {
+        String result = "";
+        Iterator<String> iterator = this.keySet().iterator();
+        while (iterator.hasNext()) {
+            result += this.get(iterator.next()).toString() + '\n';
+        }
+        return result;
+    }
+
+    /**
+     * Prints all appointments to the console with a format.
+     */
+    public void printAllAppointments() {
+        System.out.print(this.toString());
+    }
 }

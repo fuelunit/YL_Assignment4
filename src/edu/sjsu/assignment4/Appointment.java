@@ -12,6 +12,7 @@ public abstract class Appointment implements Comparable<Appointment> {
     protected String description;
     protected LocalDate startDate;
     protected LocalDate endDate;
+    protected String type;
 
     /**
      * The constructor for Appointment
@@ -27,9 +28,26 @@ public abstract class Appointment implements Comparable<Appointment> {
      */
     public Appointment(String description, LocalDate startDate,
                        LocalDate endDate) {
-        this.description = description;
+        this.description = this.capitalize(description);
         this.startDate = startDate;
         this.endDate = endDate;
+        this.type = "appointment";
+    }
+
+    /**
+     * A helper method that capitalizes the first letter
+     * of the {@code String} and force the rest to the lower
+     * case.
+     *
+     * @param inputStr
+     *      A raw {@code String}.
+     *
+     * @return
+     *      A  capitalzied {@code String}.
+     */
+    private String capitalize(String inputStr) {
+        return inputStr.substring(0,1).toUpperCase()
+                + inputStr.substring(1).toLowerCase();
     }
 
     /**
@@ -54,6 +72,16 @@ public abstract class Appointment implements Comparable<Appointment> {
      */
     public LocalDate getEndDate() {
         return this.endDate;
+    }
+
+    /**
+     * Gets the appointment type.
+     *
+     * @return
+     *      {@code String}
+     */
+    public String getType() {
+        return this.type;
     }
 
     /**
@@ -114,5 +142,19 @@ public abstract class Appointment implements Comparable<Appointment> {
                                            LocalDate endDate, LocalDate toCompare) {
         return (toCompare.compareTo(startDate) >= 0
                 && toCompare.compareTo(endDate) <= 0);
+    }
+
+    /**
+     * An overridden toString method
+     *
+     * @return
+     *      An optimized {@code String}.
+     */
+    @Override
+    public String toString() {
+        return this.getDescription() + ", from " +
+               this.getStartDate().toString() + " to " +
+               this.getEndDate().toString() + ", " +
+               this.getType();
     }
 }
