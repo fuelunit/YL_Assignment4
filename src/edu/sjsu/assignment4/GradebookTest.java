@@ -77,8 +77,8 @@ class GradebookTest {
         // Setting the new output stream
         System.setOut(new PrintStream(outputStream));
         // Assertion
-        String expected = "0.Unnamed: B\n" +
-                "1.John Doe: A\n";
+        String expected = "0.John Doe: A\n" +
+                "1.Unnamed: B\n";
         gradebook.printGrade();
         String actual = outputStream.toString();
         assertEquals(expected, actual);

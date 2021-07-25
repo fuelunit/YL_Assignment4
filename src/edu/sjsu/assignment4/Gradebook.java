@@ -182,23 +182,11 @@ public class Gradebook extends HashMap<Student, Character> {
      */
     public String toString(Comparator<Student> comparator) {
         String result = "";
-        //Iterator<Student> iterator;
-        // Pick a correct key collection to iterate.
-        /*
-        if (comparator != null) {
-
-
-            ArrayList<Student> students = new ArrayList<Student>(this.keySet());
-            students.sort(comparator);
-            iterator = students.listIterator();
-        } else {
-            iterator = this.keySet().iterator();
-        }*/
-        TreeSet<Student> set1 = new TreeSet<>(comparator);
-        set1.addAll(this.keySet());
+        TreeSet<Student> studentTreeSet = new TreeSet<>(comparator);
+        studentTreeSet.addAll(this.keySet());
         // Iterating through the key collection and concatenate
         // to result.
-        for (Student s: set1) {
+        for (Student s: studentTreeSet) {
             result += s.toString() + ": " + this.get(s) + "\n";
         }
         /*
