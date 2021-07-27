@@ -96,14 +96,23 @@ public class AppointmentProgram {
                     System.out.print(prompt);
                     break;
                 case "d":
-                    System.out.print("Please enter the description of the appointment you want delete: ");
+                    System.out.print("Please enter the description of the appointment you want to delete: ");
                     String typeLookUp = Appointment.capitalize(scanner.nextLine().trim());
+                    boolean isDeleted = true;
                     while (!manager.deleteAnAppointment(typeLookUp)) {
                         System.out.println("Sorry, appointment not found! please enter again!");
-                        System.out.print("Please enter the description of the appointment you want delete: ");
+                        System.out.print("Please enter the description of the " +
+                                "appointment you want to delete, or q (or Q) to return " +
+                                "to the main menu: ");
                         typeLookUp = Appointment.capitalize(scanner.nextLine().trim());
+                        if (typeLookUp.equals("Q")) {
+                            isDeleted = false;
+                            break;
+                        }
                     }
-                    System.out.println("Appointment deleted!");
+                    if (isDeleted) {
+                        System.out.println("Appointment deleted!");
+                    }
                     System.out.print(prompt);
                     break;
                 case "v":
