@@ -8,6 +8,16 @@ package edu.sjsu.assignment4;
 
 import java.time.LocalDate;
 
+/**
+ * An appointment has a String description, two LocalDate objects
+ * for the starting and ending date, and a {@code String} type.
+ * Its constructors initialize those variables by the arguments
+ * passed in. The order of the parameters is:
+ * {@code String} description, {@code LocalDate} startDate,
+ * {@code LocalDate} endDat, {@code String} type.
+ *
+ * @author Yipeng Liu
+ */
 public abstract class Appointment implements Comparable<Appointment> {
     protected String description;
     protected LocalDate startDate;
@@ -45,7 +55,7 @@ public abstract class Appointment implements Comparable<Appointment> {
      * @return
      *      A  capitalzied {@code String}.
      */
-    private String capitalize(String inputStr) {
+    public static String capitalize(String inputStr) {
         return inputStr.substring(0,1).toUpperCase()
                 + inputStr.substring(1).toLowerCase();
     }

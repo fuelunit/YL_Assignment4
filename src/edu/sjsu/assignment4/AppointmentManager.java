@@ -9,6 +9,13 @@ package edu.sjsu.assignment4;
 import java.util.Iterator;
 import java.util.TreeMap;
 
+/**
+ * AppointmentManager class manages a collection of appointments
+ * by inheriting from {@code TreeMap} where the key is a description
+ * {@code String} and value is an {@code Appointment} object.
+ *
+ * @author Yipeng Liu
+ */
 public class AppointmentManager extends TreeMap<String, Appointment> {
 
     /**

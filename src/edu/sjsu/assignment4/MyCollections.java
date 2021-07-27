@@ -10,6 +10,11 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
 
+/**
+ * A collection of printFiles, downsize, and isBalanced.
+ *
+ * @author Yipeng Liu
+ */
 public class MyCollections {
     /**
      * Implements a public static method to print a collection of files.

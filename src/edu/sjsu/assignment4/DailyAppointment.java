@@ -8,6 +8,9 @@ package edu.sjsu.assignment4;
 
 import java.time.LocalDate;
 
+/**
+ * A subclass of Appointment
+ */
 public class DailyAppointment extends Appointment{
     /**
      * The constructor for DailyAppointment

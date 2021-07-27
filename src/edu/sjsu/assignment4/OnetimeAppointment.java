@@ -8,6 +8,9 @@ package edu.sjsu.assignment4;
 
 import java.time.LocalDate;
 
+/**
+ * A subclass of Appointment
+ */
 public class OnetimeAppointment extends Appointment {
     /**
      * The constructor for OneTimeAppointment

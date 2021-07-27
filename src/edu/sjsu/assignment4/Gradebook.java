@@ -8,6 +8,14 @@ package edu.sjsu.assignment4;
 
 import java.util.*;
 
+/**
+ * The Gradebook class manages a collection of students. The students are
+ * stored in a HashMap, where the keys are the student objects, and the
+ * values are the student's grade as a Character.
+ *
+ * @author Yipeng Liu
+ * @see java.util.HashMap
+ */
 public class Gradebook extends HashMap<Student, Character> {
     /**
      * Adds a student with the id, name and grade to the map.
@@ -189,12 +197,6 @@ public class Gradebook extends HashMap<Student, Character> {
         for (Student s: studentTreeSet) {
             result += s.toString() + ": " + this.get(s) + "\n";
         }
-        /*
-        while (set1.iterator().hasNext()) {
-            Student current = iterator.next();
-            result += ": " + this.get(current) + "\n";
-
-        }*/
         return result;
     }
 

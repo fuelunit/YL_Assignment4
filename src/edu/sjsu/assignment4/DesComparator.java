@@ -8,6 +8,11 @@ package edu.sjsu.assignment4;
 
 import java.util.Comparator;
 
+/**
+ * A description comparator for Appointment (Comparator<Appointment>)
+ * that will compare the description first, then start date, finally
+ * end date. That is, override the compare method.
+ */
 public class DesComparator implements Comparator<Appointment> {
     /**
      * Overriden compare method for DesComparator that will compare the

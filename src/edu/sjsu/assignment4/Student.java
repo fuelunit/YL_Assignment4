@@ -8,6 +8,11 @@ package edu.sjsu.assignment4;
 
 import java.util.Objects;
 
+/**
+ * A student with ID and name.
+ *
+ * @author Yipeng Liu
+ */
 public class Student implements Comparable<Student> {
     private int id;
     private String name;
